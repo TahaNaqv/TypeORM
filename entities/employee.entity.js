@@ -3,7 +3,7 @@ const EntitySchema = require("typeorm").EntitySchema;
 
 module.exports = new EntitySchema({
   name: "Employee",
-  tableName: "employee",
+  tableName: "employees",
   target: Employee,
   columns: {
     id: {
@@ -22,6 +22,7 @@ module.exports = new EntitySchema({
     },
     email: {
       type: "varchar",
+      unique: true,
     },
     password: {
       type: "varchar",

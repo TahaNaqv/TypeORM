@@ -1,20 +1,66 @@
-const {param, body} = require('express-validator');
+const { param, body } = require("express-validator");
 
-module.exports.id_param_validator = param('id').isNumeric();
+module.exports.idParamValidator = param("id")
+  .isNumeric()
+  .withMessage("id should be an integer");
 
-module.exports.create_request_body_validator = [
-    body('name').isString(),
-    body('age').isInt({min:0, max:100}),
-    body('salary').isFloat({min:0.00, max:10000.00}),
-    body('email').isEmail(),
-    body('password').isStrongPassword({minLength:8, minLowercase:1, minUppercase:1, minNumbers:1, minSymbols:1, returnScore: false, pointsPerUnique: 1, pointsPerRepeat: 0.5, pointsForContainingLower: 10, pointsForContainingUpper: 10, pointsForContainingNumber: 10, pointsForContainingSymbol: 10})
-]
+module.exports.createRequestBodyValidator = [
+  body("name").isString().withMessage("Name should be a string"),
+  body("age")
+    .isInt({ min: 14, max: 50 })
+    .withMessage("Age value should be between 18 and 50"),
+  body("salary")
+    .isFloat({ min: 0.0, max: 10000.0 })
+    .withMessage("Salary should be between 0.0 - 10000.0"),
+  body("email").isEmail().withMessage("Invalid email format"),
+  body("password")
+    .isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+      returnScore: false,
+      pointsPerUnique: 1,
+      pointsPerRepeat: 0.5,
+      pointsForContainingLower: 10,
+      pointsForContainingUpper: 10,
+      pointsForContainingNumber: 10,
+      pointsForContainingSymbol: 10,
+    })
+    .withMessage(
+      "min length: 8, should contain lowercase, uppercase, numbers and symbols"
+    ),
+];
 
-
-module.exports.update_request_body_validator = [
-    body('name').optional().isString(),
-    body('age').optional().isInt({min:0, max:100}),
-    body('salary').optional().isFloat({min:0.00, max:10000.00}),
-    body('email').optional().isEmail(),
-    body('password').optional().isStrongPassword({minLength:8, minLowercase:1, minUppercase:1, minNumbers:1, minSymbols:1, returnScore: false, pointsPerUnique: 1, pointsPerRepeat: 0.5, pointsForContainingLower: 10, pointsForContainingUpper: 10, pointsForContainingNumber: 10, pointsForContainingSymbol: 10})
-]
+module.exports.updateRequestBodyValidator = [
+  body("name").optional().isString().withMessage("Name should be a string"),
+  body("age")
+    .optional()
+    .isInt({ min: 0, max: 100 })
+    .withMessage("Age value should be between 18 and 50"),
+  body("salary")
+    .optional()
+    .isFloat({ min: 0.0, max: 10000.0 })
+    .withMessage("Salary should be between 0.0 - 10000.0"),
+  body("email").optional().isEmail().withMessage("Invalid email format"),
+  body("password")
+    .optional()
+    .isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+      returnScore: false,
+      pointsPerUnique: 1,
+      pointsPerRepeat: 0.5,
+      pointsForContainingLower: 10,
+      pointsForContainingUpper: 10,
+      pointsForContainingNumber: 10,
+      pointsForContainingSymbol: 10,
+    })
+    .withMessage(
+      "min length: 8, should contain lowercase, uppercase, numbers and symbols"
+    ),
+];

@@ -1,6 +1,10 @@
 const router = require("express").Router();
-const {id_param_validator, create_request_body_validator, update_request_body_validator} = require("../validators/employee.validator")
-const {param} = require('express-validator');
+const {
+  idParamValidator,
+  createRequestBodyValidator,
+  updateRequestBodyValidator,
+} = require("../validators/employee.validator");
+const { param } = require("express-validator");
 
 const {
   getAll,
@@ -12,12 +16,12 @@ const {
 
 router.get("/", getAll);
 
-router.get("/:id", id_param_validator, getByID);
+router.get("/:id", idParamValidator, getByID);
 
-router.post("/", create_request_body_validator, Create);
+router.post("/", createRequestBodyValidator, Create);
 
-router.put("/:id", id_param_validator, update_request_body_validator, Update);
+router.put("/:id", idParamValidator, updateRequestBodyValidator, Update);
 
-router.delete("/:id", id_param_validator, Delete);
+router.delete("/:id", idParamValidator, Delete);
 
 module.exports = router;
