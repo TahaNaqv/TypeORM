@@ -3,6 +3,7 @@ const {
   idParamValidator,
   createRequestBodyValidator,
   updateRequestBodyValidator,
+  loginValidator,
 } = require("../validators/employee.validator");
 const { param } = require("express-validator");
 
@@ -12,9 +13,12 @@ const {
   Create,
   Update,
   Delete,
+  login,
 } = require("../controllers/employee.controller");
 
 router.get("/", getAll);
+
+router.get("/login/", loginValidator, login);
 
 router.get("/:id", idParamValidator, getByID);
 
