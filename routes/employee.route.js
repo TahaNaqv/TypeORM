@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const verifyJwt = require("../jwt/verifyJwt");
+const { verify } = require("jsonwebtoken");
 const {
   idParamValidator,
   createRequestBodyValidator,
@@ -16,9 +18,9 @@ const {
   login,
 } = require("../controllers/employee.controller");
 
-router.get("/", getAll);
+router.use(verifyJwt);
 
-router.get("/login/", loginValidator, login);
+router.get("/", getAll);
 
 router.get("/:id", idParamValidator, getByID);
 
