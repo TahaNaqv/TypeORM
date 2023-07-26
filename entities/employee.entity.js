@@ -16,9 +16,11 @@ module.exports = new EntitySchema({
     },
     age: {
       type: "int",
+      nullable: true,
     },
     salary: {
       type: "float",
+      nullable: true,
     },
     email: {
       type: "varchar",

@@ -29,9 +29,11 @@ module.exports.loginValidator = [
 module.exports.createRequestBodyValidator = [
   body("name").isString().withMessage("Name should be a string"),
   body("age")
+    .optional()
     .isInt({ min: 14, max: 50 })
     .withMessage("Age value should be between 18 and 50"),
   body("salary")
+    .optional()
     .isFloat({ min: 0.0, max: 10000.0 })
     .withMessage("Salary should be between 0.0 - 10000.0"),
   body("email").isEmail().withMessage("Invalid email format"),
